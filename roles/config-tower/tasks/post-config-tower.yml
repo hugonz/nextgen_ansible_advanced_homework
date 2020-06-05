@@ -1,4 +1,20 @@
 - name: Create Homework Assignment project
+  tower_project:
+    name: "{{ proj_name }}"
+    organization: Default
+    tower_username: admin
+    tower_password: r3dh4t1!
+    tower_host: tower1.{{tower_GUID}}.example.opentlc.com
+    validate_certs: no
+    scm_url: "{{ scm_url }}"
+    scm_type: git
+    scm_update_on_launch: true
+
+- name: Remove conflicting lines (noncomments) in key files
+  lineinfile:
+    path: "/root/.ssh/openstack.pem"
+    state: absent
+    regex: '#.*$'
 
 
 - name: Machine Credentail to connect to workstation using openstack.pub
@@ -48,7 +64,7 @@
     tower_username: admin
     tower_password: r3dh4t1!
     tower_verify_ssl: no
-    ssh_key_data: /root/.ssh/mykey.pem
+    ssh_key_data: /root/.ssh/{{ lookup('env','TOWER_GUID') | lower }}key.pem
     username: "{{ opentlc_login }}"
 
 - name: Remove secret
