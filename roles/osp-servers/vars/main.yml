@@ -1,7 +1,6 @@
 ---
 # vars file for osp.servers
 
-openstack_key: "{{ lookup('file','/home/cloud-user/.ssh/openstack.pub') }}"
 osp_servers:
   frontend:
     name: frontend
