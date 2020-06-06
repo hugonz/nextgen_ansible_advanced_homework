@@ -8,32 +8,11 @@
     replace: 'Defaults  !requiretty'
     backup: yes
 
-# - name: pull repo file from local site into /etc
-#   become: yes
-#   become_user: root
-#   get_url:
-#       dest: /etc/yum.repos.d/internal.repo
-#       url: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
- 
-#- name: install base tools and packages
-
 - name: pull repo file from local site into /etc
   become: yes
   become_user: root
-  copy:
-    dest: /etc/yum.repos.d/internal.repo
-    content: |
-      [rhel-8-for-x86_64-appstream-rpms]
-      name=rhel-8-for-x86_64-appstream-rpms
-      baseurl=http://192.0.2.253/repos/rhel-8-for-x86_64-appstream-rpms
-      enabled=1
-      gpgcheck=0
-
-      [rhel-8-for-x86_64-baseos-rpms]
-      name=rhel-8-for-x86_64-baseos-rpms
-      baseurl=http://192.0.2.253/repos/rhel-8-for-x86_64-baseos-rpms
-      enabled=1
-      gpgcheck=0
-
-
-
+  get_url:
+      dest: /etc/yum.repos.d/internal.repo
+      force: yes
+      url: http://www.opentlc.com/download/ansible_bootcamp/repo/internal.repo
+ 
