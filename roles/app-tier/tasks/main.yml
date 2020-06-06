@@ -2,8 +2,16 @@
 # tasks file for app-tier
   - name: install tomcat
     package:
-      name: tomcat
+      name: 
+        - tomcat
+        - httpd
       state: latest
+
+  - name: start tomcat
+    service:
+      name: tomcat
+      state: started
+      enabled: yes
 
   - name: create ansible tomcat directory
     file:
@@ -16,17 +24,6 @@
       dest: /usr/share/tomcat/webapps/ansible/index.html
       mode: 0644
     notify: restart Tomcat
-
-  - name: start tomcat
-    service:
-      name: tomcat
-      state: started
-      enabled: yes
-
-  - name: install apache
-    yum:
-      name: httpd
-      state: latest
 
   - name: enable apache at boot
     service:
