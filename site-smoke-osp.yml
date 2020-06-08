@@ -11,6 +11,7 @@
   #   register: webpage
   - uri:
       url: http://{{ groups['frontends'])[0] }}
+      return_content: yes
     register: webpage
     loop: "{{ groups['frontends'] }}"
 
