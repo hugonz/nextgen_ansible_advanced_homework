@@ -1,8 +1,15 @@
 - hosts: workstation
   gather_facts: false
   tasks:
+  #Get the groups that we need
   - name: OpenStack servers
+    include_role:
+      name: osp-facts
+
   - name: Curl website
+    uri:
+      url: http://{{ (groups['frontends'])[0] }}
+    register: webpage
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
