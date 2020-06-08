@@ -3,13 +3,11 @@
       name: postgresql-server
       state: present
   - name: initialize Postgres
-    become: yes
-    become_user: postgres
     command: postgresql-setup initdb
     args:
       creates: /var/lib/pgsql/data
   - name: start postgres
     service:
-      name: postgresql
+      name: postgresql.service
       state: started
       enabled: yes 
