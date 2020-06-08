@@ -6,9 +6,14 @@
     include_role:
       name: osp-facts
 
-  - name: Curl website
-    command: curl http://{{ (groups['frontends'])[0] }}
+  # - name: Curl website
+  #   command: curl http://{{ (groups['frontends'])[0] }}
+  #   register: webpage
+  - uri:
+      url: http://{{ (groups['frontends'])[0]
     register: webpage
+    loop: "{{ groups['frontends'] }}"
+
   - debug:
       var: webpage
 
