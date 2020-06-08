@@ -10,6 +10,8 @@
     uri:
       url: http://{{ (groups['frontends'])[0] }}
     register: webpage
+  - debug:
+      var: webpage
 
   - name: Fail if 'Ansible has done its job' is not in the page content
     fail:
