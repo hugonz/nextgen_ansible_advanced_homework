@@ -24,9 +24,3 @@
       dest: /usr/share/tomcat/webapps/ansible/index.html
       mode: 0644
     notify: restart Tomcat
-
-  - name: enable apache at boot
-    service:
-      name: httpd
-      state: started
-      enabled: yes
