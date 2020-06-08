@@ -5,7 +5,7 @@
   - name: initialize Postgres
     command: postgresql-setup initdb
     args:
-      creates: /var/lib/pgsql/data/base
+      creates: /var/lib/pgsql/initdb.log
   - name: start postgres
     service:
       name: postgresql.service
