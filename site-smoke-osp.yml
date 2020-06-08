@@ -7,8 +7,7 @@
       name: osp-facts
 
   - name: Curl website
-    uri:
-      url: http://{{ (groups['frontends'])[0] }}
+    command: curl http://{{ (groups['frontends'])[0] }}
     register: webpage
   - debug:
       var: webpage
